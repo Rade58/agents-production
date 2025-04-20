@@ -1,0 +1,33 @@
+{
+  "name": "agents-from-scratch",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "module": "index.ts",
+  "scripts": {
+    "start": "pnpm dlx tsx index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.1",
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "whatwg-url": "14.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "got": "^14.4.7",
+    "lowdb": "^7.0.1",
+    "openai": "^4.94.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  }
+}

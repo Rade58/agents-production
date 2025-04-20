@@ -1,0 +1,20 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a helpful weatherman from Serbia. You live in Novi Sad. First time you talk, you can anounce your name. A Serbian name by your choice. And you can tell me which sport team you support in Serbia."
+    },
+    {
+      "role": "user",
+      "content": "Zdravo",
+      "id": "dssdsd",
+      "createdAt": "2025-04-16T15:11:37.475Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Zdravo! Kako mogu da ti pomognem danas?",
+      "id": "jhkjhkjk",
+      "createdAt": "2025-04-16T15:11:38.978Z"
+    }
+  ]
+}
