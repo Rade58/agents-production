@@ -2,7 +2,7 @@ import { runAgent } from './agent';
 
 import { toolsDEffinitionsList } from './tools/tools';
 
-export async function partSix() {
+export async function basePart() {
   const userMessage = process.argv[2];
 
   if (!userMessage) {
