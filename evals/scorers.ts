@@ -1,6 +1,6 @@
 import type { Scorer } from 'autoevals';
 
-export const ToolCallNatch: Scorer<any, { input: string }> = async ({
+export const ToolCallMatch: Scorer<any, { input: any }> = async ({
   input,
   output,
   expected,
@@ -9,12 +9,13 @@ export const ToolCallNatch: Scorer<any, { input: string }> = async ({
     output.role === 'assistant' &&
     Array.isArray(output.tool_calls) &&
     output.tool_calls.length === 1 &&
-    output.tool_calls[0].function?.name === expected.tool_calls[0]?.name
+    output.tool_calls[0].function?.name ===
+      expected.tool_calls[0].function?.name
       ? 1
       : 0;
 
   return {
-    name: 'ToolCallNatch',
+    name: 'ToolCallMatch',
     score,
   };
 };

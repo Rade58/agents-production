@@ -1,8 +1,6 @@
 import 'dotenv/config';
-
 import type { Score, Scorer } from 'autoevals';
 import chalk from 'chalk';
-
 import { JSONFilePreset } from 'lowdb/node';
 
 type Run = {
@@ -10,8 +8,8 @@ type Run = {
   output: any;
   expected: any;
   scores: {
-    name: Score['name']; // string
-    score: Score['score']; // number | null
+    name: Score['name'];
+    score: Score['score'];
   }[];
   createdAt?: string;
 };
@@ -41,15 +39,12 @@ const getDb = async () => {
 };
 
 const calculateAvgScore = (runs: Run[]) => {
-  const totalScores = runs.reduce((acc_sum, run) => {
+  const totalScores = runs.reduce((sum, run) => {
     const runAvg =
-      run.scores.reduce((acc_su, score) => {
-        return acc_su + (score.score !== null ? score.score : 0);
-      }, 0) / run.scores.length;
-
-    return acc_sum + runAvg;
+      run.scores.reduce((sum, score) => sum + (score.score ?? 0), 0) /
+      run.scores.length;
+    return sum + runAvg;
   }, 0);
-
   return totalScores / runs.length;
 };
 
@@ -57,8 +52,7 @@ export const loadExperiment = async (
   experimentName: string
 ): Promise<Experiment | undefined> => {
   const db = await getDb();
-
-  return db.data.experiments.find((exper) => exper.name === experimentName);
+  return db.data.experiments.find((e) => e.name === experimentName);
 };
 
 export const saveSet = async (
@@ -67,19 +61,19 @@ export const saveSet = async (
 ) => {
   const db = await getDb();
 
-  const runsWithTimeStamp = runs.map((run) => ({
+  const runsWithTimestamp = runs.map((run) => ({
     ...run,
     createdAt: new Date().toISOString(),
   }));
 
   const newSet = {
-    runs: runsWithTimeStamp,
-    score: calculateAvgScore(runsWithTimeStamp),
+    runs: runsWithTimestamp,
+    score: calculateAvgScore(runsWithTimestamp),
     createdAt: new Date().toISOString(),
   };
 
   const existingExperiment = db.data.experiments.find(
-    (exper) => exper.name === experimentName
+    (e) => e.name === experimentName
   );
 
   if (existingExperiment) {
@@ -95,10 +89,10 @@ export const saveSet = async (
 };
 
 export const runEval = async <T = any>(
-  experimentName: string,
+  experiment: string,
   {
-    data,
     task,
+    data,
     scorers,
   }: {
     task: (input: any) => Promise<T>;
@@ -108,34 +102,35 @@ export const runEval = async <T = any>(
 ) => {
   const results = await Promise.all(
     data.map(async ({ input, expected, reference }) => {
-      const rslts = await task(input);
-
+      const results = await task(input);
       let context: string | string[];
       let output: string;
 
-      // @ts-expect-error rslts
-      if (rslts.context) {
-        // @ts-expect-error rslts
-        context = rslts.context;
-        // @ts-expect-error rslts
-        output = rslts.response;
+      // @ts-expect-errortypes
+      if (results.context) {
+        // @ts-expect-errortypes
+
+        context = results.context;
+        // @ts-expect-errortypes
+
+        output = results.response;
       } else {
-        // @ts-expect-error rslts
-        output = rslts;
+        // @ts-expect-errortypes
+
+        output = results;
       }
 
       const scores = await Promise.all(
         scorers.map(async (scorer) => {
           const score = await scorer({
             input,
-            output: rslts,
+            output: results,
             expected,
             reference,
             context,
           });
-
           return {
-            name: scorer.name,
+            name: score.name,
             score: score.score,
           };
         })
@@ -152,13 +147,10 @@ export const runEval = async <T = any>(
     })
   );
 
-  const previousExperiment = await loadExperiment(experimentName);
-
+  const previousExperiment = await loadExperiment(experiment);
   const previousScore =
     previousExperiment?.sets[previousExperiment.sets.length - 1]?.score || 0;
-
   const currentScore = calculateAvgScore(results);
-
   const scoreDiff = currentScore - previousScore;
 
   const color = previousExperiment
@@ -169,14 +161,15 @@ export const runEval = async <T = any>(
       : chalk.blue
     : chalk.blue;
 
-  console.log(`Experiment: ${experimentName}`);
+  console.log(`Experiment: ${experiment}`);
   console.log(`Previous score: ${color(previousScore.toFixed(2))}`);
   console.log(`Current score: ${color(currentScore.toFixed(2))}`);
   console.log(
     `Difference: ${scoreDiff > 0 ? '+' : ''}${color(scoreDiff.toFixed(2))}`
   );
+  console.log();
 
-  await saveSet(experimentName, results);
+  await saveSet(experiment, results);
 
   return results;
 };
