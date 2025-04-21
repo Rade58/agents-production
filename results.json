@@ -150,6 +150,511 @@
           "createdAt": "2025-04-21T20:33:41.112Z"
         }
       ]
+    },
+    {
+      "name": "dadjoke",
+      "sets": [
+        {
+          "runs": [
+            {
+              "input": "What is the best joke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": "Humor is subjective, and what one person finds hilarious, another might not. However, a classic joke that many people enjoy is:\n\n\"Why don't scientists trust atoms? Because they make up everything!\"\n\nIf you'd like, I can also fetch a dad joke for you! Would you like that?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:42:21.769Z"
+            }
+          ],
+          "score": 0,
+          "createdAt": "2025-04-21T21:42:21.769Z"
+        },
+        {
+          "runs": [
+            {
+              "input": "What is the best joke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": "Humor is subjective, and what one person finds hilarious, another might not. However, a classic joke that many people enjoy is:\n\n\"Why don't scientists trust atoms? Because they make up everything!\"\n\nIf you'd like, I can also provide a dad joke for a different flavor of humor! Would you like that?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:42:56.167Z"
+            },
+            {
+              "input": "What is the best dadjoke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": "The \"best\" dad joke can be subjective, but here's a classic one that many people enjoy:\n\nWhy did the scarecrow win an award?  \nBecause he was outstanding in his field!\n\nIf you'd like, I can fetch a new dad joke for you!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:42:56.167Z"
+            }
+          ],
+          "score": 0,
+          "createdAt": "2025-04-21T21:42:56.167Z"
+        },
+        {
+          "runs": [
+            {
+              "input": "What is the best joke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": "Humor is subjective, so what might be the best joke for one person may not be for another. However, I can share a classic joke that many people enjoy:\n\nWhy don't scientists trust atoms? \n\nBecause they make up everything!\n\nIf you'd like, I can also find a dad joke for you!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:43:13.532Z"
+            },
+            {
+              "input": "Tell me dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_kaSH00SFZXADpjVAILKkRpKP",
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke",
+                      "arguments": "{\"reasoning\":\"User requested a dad joke for entertainment.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T21:43:13.532Z"
+            }
+          ],
+          "score": 0.5,
+          "createdAt": "2025-04-21T21:43:13.532Z"
+        },
+        {
+          "runs": [
+            {
+              "input": "What is the best joke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": "Humor is subjective, so the \"best\" joke can vary from person to person. However, I can share a classic joke that many find amusing:\n\nWhy don't scientists trust atoms? \n\nBecause they make up everything! \n\nIf you'd like, I can also fetch a dad joke for you!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:43:43.866Z"
+            },
+            {
+              "input": "What is the best dad joke in the world?",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_dqbk0KDWNOp3BxXcYlM1HIj2",
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke",
+                      "arguments": "{\"reasoning\":\"To provide a humorous dad joke that fits the request.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T21:43:43.866Z"
+            },
+            {
+              "input": "Tell me dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_tzeIVmCWTNfB4NXxOVccqEBd",
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke",
+                      "arguments": "{\"reasoning\":\"I want to bring some humor to the conversation.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T21:43:43.866Z"
+            }
+          ],
+          "score": 0.6666666666666666,
+          "createdAt": "2025-04-21T21:43:43.866Z"
+        }
+      ]
+    },
+    {
+      "name": "generateImage",
+      "sets": [
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_cOSiZQaqsvvN8n3iTQ54f3Ln",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A cute and fluffy cat sitting on a windowsill, looking outside with bright green eyes, surrounded by potted plants and sunlight streaming in.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T21:47:53.676Z"
+            },
+            {
+              "input": "Take a photo of the dog",
+              "output": {
+                "role": "assistant",
+                "content": "I can't take photos directly, but I can help you generate an image of a dog if you'd like. Please provide me with some details about the type of dog or the scene you have in mind!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T21:47:53.677Z"
+            }
+          ],
+          "score": 0.5,
+          "createdAt": "2025-04-21T21:47:53.677Z"
+        },
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_penN0nJSuSpqlpEV2oYJVtmf",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"a cute and fluffy cat sitting on a windowsill, with sunlight streaming in and a few potted plants around\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T21:48:11.538Z"
+            }
+          ],
+          "score": 1,
+          "createdAt": "2025-04-21T21:48:11.538Z"
+        }
+      ]
+    },
+    {
+      "name": "allTools",
+      "sets": [
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_cUmF2zI7k4zGzsEbyw53EVL8",
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke",
+                      "arguments": "{\"reasoning\":\"User requested a funny dad joke.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-21T23:14:57.741Z"
+            },
+            {
+              "input": "take a photo of mars",
+              "output": {
+                "role": "assistant",
+                "content": "I can't take a photo of Mars directly, but I can help you find images of Mars taken by various space missions. NASA's Mars rovers and orbiters have captured many stunning images of the planet. You can visit the NASA website or the Mars Exploration Program page to find high-quality images of Mars. Would you like more specific links or information about a particular mission?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T23:14:57.742Z"
+            },
+            {
+              "input": "what is the most upvoted post on reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_pkDprHMc9cE1PztKDWnVUo4d",
+                    "type": "function",
+                    "function": {
+                      "name": "reddit",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-04-21T23:14:57.742Z"
+            }
+          ],
+          "score": 0.3333333333333333,
+          "createdAt": "2025-04-21T23:14:57.742Z"
+        }
+      ]
     }
   ]
 }
