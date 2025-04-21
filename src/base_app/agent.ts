@@ -4,7 +4,7 @@ import { addMessages, getMessages, saveToolResponse } from '../memory';
 import { runLLM } from './llm';
 import { runTool } from './toolRunner';
 
-const DB_NAME = 'db-part6-optimizations';
+const DB_NAME = 'db-base';
 
 export const runAgent = async ({
   tools,

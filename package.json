@@ -6,12 +6,13 @@
   "module": "index.ts",
   "scripts": {
     "start": "pnpm dlx tsx index.ts",
+    "eval": "pnpm dlx tsx evals/run.ts $1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.9.0",
   "devDependencies": {
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
@@ -23,6 +24,8 @@
     "whatwg-url": "14.2.0"
   },
   "dependencies": {
+    "autoevals": "^0.0.127",
+    "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "got": "^14.4.7",
     "lowdb": "^7.0.1",

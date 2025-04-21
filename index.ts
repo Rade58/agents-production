@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
-import { basePart } from './src/0_part_base';
+import { baseApp } from './src/base_app';
 
 // start of the project
 
-basePart();
+baseApp();
