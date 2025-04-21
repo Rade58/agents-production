@@ -14,4 +14,10 @@ pnpm eval "reddit"
 
 In real World we wouldn't build them ourself, we would use tool like [braintrust](https://www.braintrust.dev/) which is very expensive by the way. But it is used by major companies.
 
+More tools:
+
+<https://www.npmjs.com/package/autoevals>
+
 ## RAG
+
+<https://docs.ragas.io/en/stable/>
