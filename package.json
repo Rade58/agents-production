@@ -7,6 +7,7 @@
   "scripts": {
     "start": "pnpm dlx tsx index.ts",
     "eval": "pnpm dlx tsx evals/run.ts $1",
+    "ingest": "pnpm dlx tsx src/rag/ingest.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
