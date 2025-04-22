@@ -22,6 +22,8 @@ export const runTool = async (
       return tools.generateImage(input);
     case toolDefinitions.redditToolDeffinition.name:
       return tools.redditTool(input);
+    case toolDefinitions.movieSearchToolDefinition.name:
+      return tools.movieSearch(input);
     //
     default:
       throw new Error(`Unknown tool: ${toolCall.function.name}`);
