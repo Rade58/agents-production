@@ -28,8 +28,8 @@ const indexMovieData = async () => {
 
     try {
       await index.upsert({
-        id: record.Title,
-        data: text,
+        id: record.Title, // using Rank as a unique ID
+        data: text, // Text will be automatically embedded
         metadata: {
           title: record.Title,
           genre: record.Genre,
