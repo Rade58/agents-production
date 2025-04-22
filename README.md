@@ -18,6 +18,38 @@ More tools:
 
 <https://www.npmjs.com/package/autoevals>
 
+<https://docs.ragas.io/en/stable/>
+
+<https://www.swebench.com/>
+
+## Vector datbase provider
+
+- Upstash
+
+```
+pnpm add @upstash/vector
+```
+
 ## RAG
 
-<https://docs.ragas.io/en/stable/>
+<https://upstash.com/>
+
+Dataset taken from:
+
+<https://www.kaggle.com/datasets>
+
+[Imdb movie datset](https://www.kaggle.com/datasets/yusufdelikkaya/imdb-movie-dataset)
+
+---
+
+Some other non ai related packages:
+
+<https://www.npmjs.com/package/chalk>
+
+<https://www.npmjs.com/package/got>
+
+<https://www.npmjs.com/package/ora>
+
+<https://www.npmjs.com/package/terminal-image>
+
+---
