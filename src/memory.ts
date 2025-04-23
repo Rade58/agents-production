@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { type AIMessage } from '../types';
 
+import { sumarizeMessages } from './base_app/llm';
+
 export type MessageWithMetadata = AIMessage & {
   id: string;
   createdAt: string;
@@ -10,6 +12,8 @@ export type MessageWithMetadata = AIMessage & {
 
 type Data = {
   messages: MessageWithMetadata[];
+  //
+  sumary: string;
 };
 
 export const addMetadata = (messageWithoutMetadata: AIMessage) => {
@@ -28,6 +32,8 @@ export const removeMetadata = (messageWithMetadata: MessageWithMetadata) => {
 
 const defaultData: Data = {
   messages: [],
+  //
+  sumary: '',
 };
 
 export const getDb = async (filename: string) => {
@@ -46,6 +52,12 @@ export const addMessages = async (
 
   db.data.messages.push(...messagesWithMetadata);
 
+  if (db.data.messages.length >= 10) {
+    const oldestMessage = db.data.messages.slice(0, 5).map(removeMetadata);
+
+    db.data.sumary = await sumarizeMessages(oldestMessage);
+  }
+
   await db.write();
 };
 
@@ -54,7 +66,25 @@ export const getMessages = async (db_filename: string) => {
 
   const messagesWithoutMetadata = db.data.messages.map(removeMetadata);
 
-  return messagesWithoutMetadata;
+  const lastFiveMessages = messagesWithoutMetadata.slice(-5);
+
+  if (lastFiveMessages[0]?.role === 'tool') {
+    const sixMessage =
+      messagesWithoutMetadata[messagesWithoutMetadata.length - 6];
+
+    if (sixMessage) {
+      return [...[sixMessage], ...lastFiveMessages];
+    }
+  }
+
+  // return messagesWithoutMetadata;
+  return lastFiveMessages;
+};
+
+export const getSummary = async (db_filename: string) => {
+  const db = await getDb(db_filename);
+
+  return db.data.sumary;
 };
 
 // Defined for the purpose of part 3 of the workshop
