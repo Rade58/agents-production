@@ -1,10 +1,50 @@
-// import type { AIMessage } from '../../types';
+import type { AIMessage } from '../../types';
 import { addMessages, getMessages, saveToolResponse } from '../memory';
 
-import { runLLM } from './llm';
+import { runLLM, runApprovalCheck } from './llm';
 import { runTool } from './toolRunner';
+import { generateImageToolDeffinition } from './tools/generateImage';
 
 const DB_NAME = 'db-base';
+
+const handleImageApprovalFlow = async (
+  history: AIMessage[],
+  userMessage: string
+) => {
+  const lastMessage = history.at(-1);
+  // @ts-expect-error tool_calls is not typed
+  const toolCall = lastMessage?.tool_calls?.[0];
+
+  if (
+    !toolCall ||
+    toolCall.function.name !== generateImageToolDeffinition.name
+  ) {
+    return;
+  }
+
+  console.log('Loader visible, processing approval...');
+
+  const approved = await runApprovalCheck(userMessage);
+
+  if (approved) {
+    console.log(`loader updated , executing tool: ${toolCall.function.name}`);
+    const toolResponse = await runTool(toolCall, userMessage);
+
+    console.log(`done: ${toolCall.function.name}`);
+
+    await saveToolResponse(toolCall.id, toolResponse, DB_NAME);
+  } else {
+    await saveToolResponse(
+      toolCall.id,
+      'User did not approve generation at this time',
+      DB_NAME
+    );
+  }
+
+  console.log('loader stopped');
+
+  return true;
+};
 
 export const runAgent = async ({
   tools,
@@ -13,7 +53,13 @@ export const runAgent = async ({
   userMessage: string;
   tools: any[];
 }) => {
-  await addMessages([{ role: 'user', content: userMessage }], DB_NAME);
+  const history = await getMessages(DB_NAME);
+
+  const isApproval = await handleImageApprovalFlow(history, userMessage);
+
+  if (!isApproval) {
+    await addMessages([{ role: 'user', content: userMessage }], DB_NAME);
+  }
 
   console.log('Thinking..., loader starts');
 
@@ -37,6 +83,14 @@ export const runAgent = async ({
       const toolCall = aiMessageResponse.tool_calls[0];
 
       console.log(aiMessageResponse);
+
+      if (toolCall.function.name === generateImageToolDeffinition.name) {
+        console.log('NEED USER APPROVAL!');
+
+        console.log('loader stopped');
+
+        return getMessages(DB_NAME);
+      }
 
       console.log(`executing: ${toolCall.function.name}`);
 

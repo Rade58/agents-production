@@ -40,9 +40,17 @@ Dataset taken from:
 
 [Imdb movie datset](https://www.kaggle.com/datasets/yusufdelikkaya/imdb-movie-dataset)
 
+## Structured Output
+
+<https://openai.com/index/introducing-structured-outputs-in-the-api/>
+
+## Human in the loop
+
+### Some other non ai related packages:
+
 ---
 
-Some other non ai related packages:
+---
 
 <https://www.npmjs.com/package/chalk>
 
@@ -53,3 +61,9 @@ Some other non ai related packages:
 <https://www.npmjs.com/package/terminal-image>
 
 ---
+
+---
+
+# Next.js AI sdk
+
+<https://sdk.vercel.ai/getting-started>

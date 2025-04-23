@@ -1,17 +1,20 @@
-import { zodFunction } from 'openai/helpers/zod';
+import { zodFunction, zodResponseFormat } from 'openai/helpers/zod';
+import { z } from 'zod';
 import type { AIMessage } from '../../types';
 import { openai } from '../ai';
-import { systemPrompt } from './systemPrompt';
+import { systemPrompt as defaultSystemPropmt } from './systemPrompt';
 export const runLLM = async ({
   messages,
   tools,
   model = 'gpt-4o-mini',
   temperature = 0.1,
+  systemPrompt,
 }: {
   messages: AIMessage[];
   tools: any[];
   temperature?: number;
   model?: string;
+  systemPrompt?: string;
 }) => {
   const formattedTools = tools?.map((t) => zodFunction(t));
 
@@ -21,12 +24,40 @@ export const runLLM = async ({
     // instead of this
     // messages,
     // we will use this
-    messages: [{ role: 'system', content: systemPrompt }, ...messages],
+    messages: [
+      { role: 'system', content: systemPrompt || defaultSystemPropmt },
+      ...messages,
+    ],
     //
-    tools: formattedTools,
-    tool_choice: 'auto',
-    parallel_tool_calls: false,
+    ...(formattedTools.length > 0 && {
+      tools: formattedTools,
+      tool_choice: 'auto',
+      parallel_tool_calls: false,
+    }),
   });
 
   return response.choices[0].message;
+};
+
+export const runApprovalCheck = async (userMessage: string) => {
+  const result = await openai.beta.chat.completions.parse({
+    model: 'gpt-4o-mini',
+    temperature: 0.1,
+    response_format: zodResponseFormat(
+      z.object({
+        approved: z.boolean().describe('did the user approve action or not'),
+      }),
+      'approval'
+    ),
+    messages: [
+      {
+        role: 'system',
+        content:
+          'Determine if the user approved the image generation. If you are not sure, then it is not approved',
+      },
+      { role: 'user', content: userMessage },
+    ],
+  });
+
+  return result.choices[0].message.parsed?.approved;
 };
